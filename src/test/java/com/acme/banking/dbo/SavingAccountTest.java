@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class SavingAccountTest {
     private Client stubClient;
@@ -47,6 +48,7 @@ public class SavingAccountTest {
         //region when
         try {
             new SavingAccount(stubId, stubClient, 1.0d);
+            fail();
         }
         //endregion
 
@@ -67,6 +69,7 @@ public class SavingAccountTest {
         //region when
         try {
             new SavingAccount(stubId, stubClient, -1.0d);
+            fail();
         }
         //endregion
 

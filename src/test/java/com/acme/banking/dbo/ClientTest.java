@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class ClientTest {
     @Test
@@ -38,6 +39,7 @@ public class ClientTest {
 
         try {
             Client sut = new Client(stubId, "dummy client name");
+            fail();
         }
         //endregion
         //region then
@@ -58,6 +60,7 @@ public class ClientTest {
 
         try {
             Client sut = new Client(stubId, EmptyName);
+            fail();
         }
         //endregion
         //region then
