@@ -10,8 +10,8 @@ import org.junit.rules.ExpectedException;
 import java.util.UUID;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 public class SavingAccountTest {
     private Client stubClient;
@@ -77,6 +77,44 @@ public class SavingAccountTest {
 
         //region then
 
+        //end region
+    }
+
+    @Test
+    public void shouldAddAccounttoCientWhenAddAccount() {
+        //region given
+        UUID stubId = UUID.randomUUID();
+        //endregion
+
+        //region when
+        SavingAccount sut = new SavingAccount(stubId, stubClient, 1.0d);
+
+
+        //endregion
+
+
+        //region then
+
+        assertEquals(true, stubClient.getAccountIds().contains(stubId));
+
+        //end region
+    }
+
+
+    @Test
+    public void shouldNotAddAccounttoCientWhenAddAlreadyExistingAccount() {
+        //region given
+        UUID stubId = UUID.randomUUID();
+        SavingAccount sut = new SavingAccount(stubId, stubClient, 1.0d);
+        //endregion
+
+        //region when
+        exception.expect(IllegalArgumentException.class);
+        SavingAccount sut1 = new SavingAccount(stubId, stubClient, 2.0d);
+        //endregion
+
+
+        //region then
         //end region
     }
 }
