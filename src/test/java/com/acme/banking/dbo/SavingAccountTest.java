@@ -3,7 +3,9 @@ package com.acme.banking.dbo;
 import com.acme.banking.dbo.domain.Client;
 import com.acme.banking.dbo.domain.SavingAccount;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.util.UUID;
 
@@ -19,6 +21,8 @@ public class SavingAccountTest {
         stubClient = new Client(UUID.randomUUID(), "Test Name");
     }
 
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
 
     @Test
     public void ShouldSavePropertiesWhenCreated() {
@@ -39,6 +43,7 @@ public class SavingAccountTest {
         //end region
     }
 
+
     @Test
     public void shouldThrowIllegalArgumentExceptionWhenAddNullId() {
         //region given
@@ -46,17 +51,14 @@ public class SavingAccountTest {
         //endregion
 
         //region when
-        try {
-            new SavingAccount(stubId, stubClient, 1.0d);
-            fail();
-        }
+        exception.expect(IllegalArgumentException.class);
+        new SavingAccount(stubId, stubClient, 1.0d);
+
         //endregion
 
 
         //region then
-        catch (IllegalArgumentException e) {
-        }
-        ;
+
         //end region
     }
 
@@ -67,17 +69,14 @@ public class SavingAccountTest {
         //endregion
 
         //region when
-        try {
-            new SavingAccount(stubId, stubClient, -1.0d);
-            fail();
-        }
+        exception.expect(IllegalArgumentException.class);
+        new SavingAccount(stubId, stubClient, -1.0d);
+
         //endregion
 
 
         //region then
-        catch (IllegalArgumentException e) {
-        }
-        ;
+
         //end region
     }
 }
