@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assume.assumeTrue;
+import static org.mockito.Mockito.*;
 
 /**
  * Test Case
@@ -53,4 +54,30 @@ public class ArrayListTest { //SUT
     public void shouldBeingEmptyWhenCreated() {
         assertEquals(0, sut.size());
     }
+
+    @Test
+    public void shouldUseElementsStringRepresentationWhenCallToString() {
+        Object stubElement1 = mock(Object.class);
+        Object stubElement2 = mock(Object.class);
+        when(stubElement1.toString()).thenReturn("test1");
+        when(stubElement2.toString()).thenReturn("test2");
+        sut.add(stubElement1);
+        sut.add(stubElement2);
+
+        assertThat(sut.toString())
+                .contains("test1")
+                .contains("test2");
+    }
+
+    @Test @Ignore
+    public void shouldUseElementsStringRepresentationWhenCallToString2() {
+        Object mockElement = spy(new Object());
+        sut.add(mockElement);
+
+        sut.toString();
+        System.out.println(sut);
+
+        verify(mockElement, times(1)).toString();
+    }
+
 }

@@ -7,10 +7,7 @@ import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.UUID;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -46,11 +43,24 @@ public class ProcessingTest {
         //region then
         assertThat(accountsByClientId).hasSize(0);
         accountsByClientId.forEach( a -> System.out.println(a.getId()));
+
+        Collection<Account> accounts = new ArrayList<>();
+//        assertThat(accounts).doesNotContain()
         //endregion
     }
 
     @Test
     public void shouldDepositAndWithdrawWhenTransfer() {
+        //Client clientStub = new ClientStubBuilder().withName("name").withAccount(id)).build();
+
+//        new AccountRepositoryDbFakeBuilder()
+//            .withAccount(1, 100., clientStub, "name")
+//            .withAccount(id, 0., clid, "name")
+//            .withAccount()
+//                .withId(1)
+//                .withAmount(100)
+//        .buid();
+
         final SavingAccount accountMock1 = mock(SavingAccount.class);
         final SavingAccount accountMock2 = mock(SavingAccount.class);
 
