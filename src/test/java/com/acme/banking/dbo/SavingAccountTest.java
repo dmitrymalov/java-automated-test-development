@@ -103,9 +103,17 @@ public class SavingAccountTest {
 
     @Test
     public void shouldNotAddAccounttoCientWhenAddAlreadyExistingAccount() {
+
         //region given
         UUID stubId = UUID.randomUUID();
-        SavingAccount sut = new SavingAccount(stubId, stubClient, 1.0d);
+        new AccountRepositoryBuilder()
+                .withAccount(stubId, stubClient, 1.0d)
+                .withAccount(stubClient, 3.0d)
+                .withAccount(new ClientBuilder().withName("Vasya"), 0.0)
+        ;
+
+
+        //    SavingAccount sut = new SavingAccount(stubId, stubClient, 1.0d);
         //endregion
 
         //region when
